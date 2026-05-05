@@ -1,0 +1,71 @@
+PAYMENT MODULE 
+
+1. GET /
+   Purpose: Check server is running
+   (No input needed)
+
+---
+
+2. POST /payments/create
+   Purpose: Create a payment
+
+{
+"order_id": "order_101",
+"amount": 50000,
+"currency": "inr",
+"customer_email": "[test@example.com](mailto:test@example.com)"
+}
+
+---
+
+3. POST /payments/create (Invalid Amount)
+   Purpose: Validate error handling
+
+{
+"order_id": "order_102",
+"amount": 0,
+"currency": "inr",
+"customer_email": "[test@example.com](mailto:test@example.com)"
+}
+
+---
+
+4. GET /payments/{payment_intent_id}
+   Purpose: Get payment details
+
+Example:
+Replace with actual ID from step 2
+
+/payments/pi_test_12345
+
+---
+
+5. GET /payments/{invalid_id}
+   Purpose: Check not found case
+
+/payments/pi_invalid_000
+
+---
+
+6. GET /payments/
+   Purpose: List all payments
+
+(No input needed)
+
+---
+
+7. POST /payments/confirm
+   Purpose: Confirm payment status
+
+{
+"payment_intent_id": "pi_test_12345"
+}
+
+(Note: Replace with real ID from step 2)
+
+---
+
+8. POST /payments/webhook
+   Purpose: Stripe internal use (skip manual testing)
+
+(No manual input required)
